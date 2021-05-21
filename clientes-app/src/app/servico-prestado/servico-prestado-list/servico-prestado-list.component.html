@@ -1,0 +1,56 @@
+<h1 class="mt-4">Serviço Prestado</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Consulta</li>
+</ol>
+
+<div class="container">
+
+  <a class="btn btn-outline-dark mb-3" routerLink="/servico-prestado/form">Incluir novo Serviço ? </a>
+
+  <form [formGroup]="servicoPrestadoPesquisaForm" (ngSubmit)="realizarBusca()">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Nome Cliente:</label>
+          <input class="form-control" type="text" formControlName="nome">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Mês</label>
+          <select class="form-control" formControlName="mes">
+            <option *ngFor="let mes of meses" value="{{mes}}">{{mes}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row col-md-2">
+      <button class="btn btn-outline-dark" [disabled]="servicoPrestadoPesquisaForm.invalid">Pesquisar</button>
+    </div>
+  </form>
+
+  <br>
+  <hr>
+
+  <p-table [value]="listaServicoPrestado" *ngIf="listaServicoPrestado.length > 0">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Cliente</th>
+        <th>Descrição</th>
+        <th>Valor</th>
+        <th>Data</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-servicoPrestadp>
+      <tr>
+        <td>{{servicoPrestadp.cliente.nome}}</td>
+        <td>{{servicoPrestadp.descricao}}</td>
+        <td>{{servicoPrestadp.valor}}</td>
+        <td>{{servicoPrestadp.data}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+</div>

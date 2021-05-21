@@ -1,0 +1,54 @@
+<h1 class="mt-4">Serviço Prestado</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Novo serviço prestado</li>
+</ol>
+
+<div class="container">
+  <form [formGroup]="servicoPrestadoForm">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Cliente:</label>
+          <select class="form-control" formControlName="idCliente">
+            <option value="">Selecione...</option>
+            <option *ngFor="let cliente of clientes" value="{{cliente.id}}">{{cliente.nome}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Descrição:</label>
+          <input type="text" class="form-control" formControlName="descricao">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data:</label>
+          <input type="text" class="form-control" formControlName="data">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Preço:</label>
+          <input type="text" class="form-control" formControlName="preco">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button class="btn btn-outline-dark mr-2" [disabled]="servicoPrestadoForm.invalid" (click)="cadastrarNovoServico()">Enviar</button>
+        <button class="btn btn-outline-dark" (click)="redirectBack()">Voltar</button>
+      </div>
+    </div>
+  </form>
+
+</div>

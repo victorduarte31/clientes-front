@@ -1,0 +1,38 @@
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Lista de Clientes</li>
+</ol>
+
+<div class="row mb-4">
+  <div class="col-md-2">
+    <a href="/clientes/form" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Cadastrar novo Cliente</a>
+  </div>
+</div>
+
+<hr>
+
+<table class="table" *ngIf="clientes.length > 0">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Data de Cadastro</th>
+    <th scope="col">Nome</th>
+    <th scope="col">CPF</th>
+    <th>Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cliente of clientes">
+    <th scope="row">{{cliente.id}}</th>
+    <td>{{cliente.dataCadastro}}</td>
+    <td>{{cliente.nome}}</td>
+    <td>{{cliente.cpf}}</td>
+    <td>
+      <button class="btn btn-outline-primary mr-3" routerLink="/clientes/form/{{cliente.id}}"><i class="far fa-edit"></i>Editar</button>
+      <button class="btn btn-outline-danger" (click)="confirmarDelecao($event, cliente)"><i class="far fa-trash-alt"></i>Deletar</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p-confirmPopup></p-confirmPopup>

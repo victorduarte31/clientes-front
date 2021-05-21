@@ -1,0 +1,54 @@
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+
+<div class="container">
+  <form [formGroup]="clientesForm">
+
+    <div class="row" *ngIf="id">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome: </label>
+          <input type="text" class="form-control" formControlName="id">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CPF: </label>
+          <input type="text" class="form-control" formControlName="dataCadastro">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome: </label>
+          <input type="text" class="form-control" formControlName="nome">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CPF: </label>
+          <input type="text" class="form-control" formControlName="cpf">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-outline-success mr-2" (click)="cadastrarCliente()" [disabled]="clientesForm.invalid" *ngIf="!id">
+          <i class="fa fa-save"></i> Cadastrar
+        </button>
+
+        <button type="submit" class="btn btn-outline-success mr-2" (click)="atualizarCliente()" [disabled]="clientesForm.invalid" *ngIf="id">
+          <i class="fas fa-sync-alt"></i> Atualizar
+        </button>
+
+        <button class="btn btn-outline-dark" (click)="redirectBack()">
+          <i class="fas fa-undo-alt"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
