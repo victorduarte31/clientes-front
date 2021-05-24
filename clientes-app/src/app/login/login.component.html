@@ -6,36 +6,53 @@
           <div class="col-lg-5">
             <div class="card shadow-lg border-0 rounded-lg mt-5">
               <div class="card-header">
-                <h3 class="text-center font-weight-light my-4">{{novoUsuario ? 'Cadastro de novo Usuario': 'Logar'}}</h3>
+                <h3
+                  class="text-center font-weight-light my-4">{{novoUsuario ? 'Cadastro de novo Usuario' : 'Logar'}}</h3>
               </div>
               <div class="card-body">
                 <div class="alert alert-danger" *ngIf="erro">
                   Login e/ou Senha incorreto(a).
                 </div>
 
-                <form [formGroup]="loginForm" *ngIf="!novoUsuario">
+                <form [formGroup]="loginForm" *ngIf="!novoUsuario" (ngSubmit)="logar()">
                   <div class="form-group">
                     <label class="small mb-1">Login</label>
                     <input type="text" class="form-control" formControlName="userName" placeholder="Login">
                   </div>
                   <div class="form-group">
                     <label class="small mb-1">Senha</label>
-                    <input type="text" class="form-control" formControlName="password" placeholder="Senha">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Senha">
                   </div>
 
                   <div class="form-group">
                     <button class="btn btn-outline-dark" type="submit" [disabled]="loginForm.invalid">Logar</button>
                   </div>
                 </form>
+
+                <form [formGroup]="loginForm" *ngIf="novoUsuario" (ngSubmit)="registrar()">
+                  <div class="form-group">
+                    <label class="small mb-1">Login</label>
+                    <input type="text" class="form-control" formControlName="userName" placeholder="Login">
+                  </div>
+                  <div class="form-group">
+                    <label class="small mb-1">Senha</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+                  </div>
+
+                  <div class="form-group">
+                    <button class="btn btn-outline-dark" type="submit" [disabled]="loginForm.invalid">Registrar</button>
+                  </div>
+                </form>
+
+
               </div>
               <div class="card-footer text-center">
                 <div class="small" *ngIf="!novoUsuario">
-                  <a href="#" class="btn btn-outline-dark" (click)="CadastrarNovoUsuario($event)">Registre-se</a>
+                  <a href="#" (click)="preparaCadastro($event)">Não possui usuário? Registre-se</a>
                 </div>
 
-
                 <div class="small" *ngIf="novoUsuario">
-                  <a href="#" class="btn btn-outline-dark" (click)="novoUsuario = !novoUsuario">Logar</a>
+                  <a href="#" (click)="novoUsuario = !novoUsuario">Logar</a>
                 </div>
               </div>
             </div>
